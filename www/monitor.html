@@ -37,10 +37,14 @@
 			font-family:Arial, Helvetica, sans-serif;
 		}
 		.solarValue {
-			font-size: 14pt;
+			font-size: 18pt;
 		}
 		.header {
 			font-size: smaller;
+		}
+		.subheader {
+			font-size: smaller;
+			padding-left: 30px;
 		}
 		.rowPanel {
 			background-color: #397dc6;
@@ -73,7 +77,7 @@
 	  <div class="row rowPanel">
 			<div class="col topData contrastPanel border border-white">
 				<span class="header">datetime</span>
-				<span class="solarValue horizontal" id="solarDatetime">?</span>
+				<span class="header horizontal" id="solarDatetime">?</span>
 			</div>
 			<div class="col topData contrastPanel border border-white">
 				<span class="header">solar</span>
@@ -126,8 +130,12 @@
 			</div>
 			<div class="col topData contrastPanel border border-white">
 				<span class="header">Weather</span>
-				<!-- <span class="solarValue horizontal" id="temperature">?</span>
-				<span class="solarValue horizontal" id="humidity">?</span> -->
+				<span class="subheader">max</span>
+				<span class="solarValue horizontal" id="tempMax">?</span>
+				<span class="solarValue horizontal" id="humidMax">?</span>
+				<span class="subheader">min</span>
+				<span class="solarValue horizontal" id="tempMin">?</span>
+				<span class="solarValue horizontal" id="humidMin">?</span>
 			</div>
 		</div>
 

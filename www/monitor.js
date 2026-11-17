@@ -23,12 +23,16 @@
 
 "use strict"
 // number of data items to get is 60 * 24 * number per minute * 1.1
-var localURL = 'http://localhost/getLog.php?number=3000&type=$V';
-var liveURL = 'https://solar.mycarda.info/getLog.php?number=3000&type=$V';
+var localURL = 'http://localhost/getLog.php?number=1500&type=$V';
+var liveURL = 'https://solar.mycarda.info/getLog.php?number=1500&type=$V';
 var useURL = liveURL;
 
 
 var startDate;
+var weatherMaxMin = {
+  "temperature" : {"max" : -273.0, "min" : 100.0 },
+  "humidity" : {"max" : 0.0, "min" : 100.0 }
+}
 var allData = [];
 
 function initialise()
@@ -107,7 +111,7 @@ function AddAllData( dataLines ) {
     dataValues.dateTime = dataItems[ 0 ];
     var dataDate = new Date(dataValues.dateTime);
     if ( dataDate.getTime() < startDate.getTime() ) {
-      // console.log(`dataDate ${dataDate}, startDate ${startDate}`);
+      // console.log(`${i}: dataDate ${dataDate}, startDate ${startDate}`);
       continue;
     }
 
@@ -137,10 +141,17 @@ function AddAllData( dataLines ) {
       "loadCurrent": dataValues.IL
     };
 
+    weatherMaxMin.temperature.max = Math.max( weatherMaxMin.temperature.max, parseFloat( dataValues.temp ) );
+    weatherMaxMin.temperature.min = Math.min( weatherMaxMin.temperature.min, parseFloat( dataValues.temp ) );
+    weatherMaxMin.humidity.max = Math.max( weatherMaxMin.humidity.max, parseFloat( dataValues.humid ) );
+    weatherMaxMin.humidity.min = Math.min( weatherMaxMin.humidity.min, parseFloat( dataValues.humid ) );
+
     allData.push( rowData );
   }
     // console.log(`allData size after load ${allData.length}`);
     // console.log(allData[10]);
+    // console.log(`temp max ${weatherMaxMin.temperature.max}, temp min ${weatherMaxMin.temperature.min}`);
+    // console.log(`hum max ${weatherMaxMin.humidity.max}, hum min ${weatherMaxMin.humidity.min}`);
 }
 
 function InvalidData( dataValues) {

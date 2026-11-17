@@ -17,8 +17,17 @@ function UpdatePanelValues( data ) {
   $("#loadState").text( latest.loadStatus );
   $("#loadCurrent").text( `${ ScaleMillis( latest.loadCurrent ) }A` );
 
-  $("#temperature").text( `${latest.temperature} C` );
+  $("#temperature").text( `${latest.temperature} \u2103` );
   $("#humidity").text( `${latest.humidity} %` );
+
+  $("#tempMax").text( `${weatherMaxMin.temperature.max} \u2103` );
+  $("#tempMin").text( `${weatherMaxMin.temperature.min} \u2103` );
+  $("#humidMax").text( `${weatherMaxMin.humidity.max} %` );
+  $("#humidMin").text( `${weatherMaxMin.humidity.min} %` );
+
+  // console.log(`1 temp max ${weatherMaxMin.temperature.max}, temp min ${weatherMaxMin.temperature.min}`);
+  // console.log(`1 humd max ${weatherMaxMin.humidity.max}, temp min ${weatherMaxMin.humidity.min}`);
+
 }
 
 function ScaleMillis( value ) {
