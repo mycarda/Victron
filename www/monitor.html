@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+	  integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+	  integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+	<script type="text/javascript" src="Panel.js"></script>
+	<script type="text/javascript" src="SolarChart.js"></script>
+	<script type="text/javascript" src="SolarSummary.js"></script>
+	<script type="text/javascript" src="BatteryChart.js"></script>
+	<script type="text/javascript" src="WeatherChart.js"></script>
+	<script type="text/javascript" src="monitor.js"></script>
+	<title>Victron MPPT Monitor</title>
+	<style>
+		body {
+			background-color: #397dc6;
+		}
+		canvas {
+			background-color: #f7f7f7;
+			margin: 10px 0px 10px 0px;
+		}
+		.currentValuesPanel {
+			width: 300px;
+			float: left;
+			font-family:Arial, Helvetica, sans-serif;
+		}
+		.solarValue {
+			font-size: 14pt;
+		}
+		.header {
+			font-size: smaller;
+		}
+		.rowPanel {
+			background-color: #397dc6;
+			color: #ffffff;
+		}
+		.col {
+			align-content:center;
+		}
+		.topData {
+			margin: 10px;
+			padding: 10px;
+		}
+		.horizontal {
+			padding-left: 10px;
+		}
+		.chart {
+			margin: 10px;
+			/* width: 85%; */
+			height: 420px;
+		}
+		.contrastPanel {
+			background-color: #296dc6;
+		}
+	</style>
+</head>
+
+<body onload="initialise()">
+
+	<div class="container-fluid panel">
+	  <div class="row rowPanel">
+			<div class="col topData contrastPanel border border-white">
+				<span class="header">datetime</span>
+				<span class="solarValue horizontal" id="solarDatetime">?</span>
+			</div>
+			<div class="col topData contrastPanel border border-white">
+				<span class="header">solar</span>
+				<span class="solarValue horizontal" id="solarState">?</span>
+				<span class="solarValue horizontal" id="solarVoltage">?</span>
+				<span class="solarValue horizontal" id="solarPower">?</span>
+			</div>
+			<div class="col topData contrastPanel border border-white">
+				<span class="header">battery</span>
+				<span class="solarValue horizontal" id="batteryState">?</span>
+				<span class="solarValue horizontal" id="batteryVoltage">?</span>
+				<span class="solarValue horizontal" id="batteryCurrent">?</span>
+			</div>
+			<div class="col topData contrastPanel border border-white">
+				<span class="header">load</span>
+				<span class="solarValue horizontal" id="loadState">?</span>
+				<span class="solarValue horizontal" id="loadCurrent">?</span>
+			</div>
+			<div class="col topData contrastPanel border border-white">
+				<span class="header">temperature</span>
+				<span class="solarValue horizontal" id="temperature">?</span>
+			</div>
+			<div class="col topData contrastPanel border border-white">
+				<span class="header">relative humidity</span>
+				<span class="solarValue horizontal" id="humidity">?</span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col chart contrastPanel border border-white">
+			  <canvas class="" id="solarChart">chart here</canvas>
+			</div>
+			<div class="col chart contrastPanel border border-white">
+			  <canvas id="batteryChart">chart here</canvas>
+			</div>
+			<div class="col chart contrastPanel border border-white">
+			  <canvas id="weatherChart">chart here</canvas>
+			</div>
+		</div>
+
+	  <div class="row rowPanel">
+			<div class="col topData contrastPanel border border-white">
+				<span class="header">Total Energy</span>
+				<span class="solarValue horizontal" id="solarTotalEnergy">?</span>
+			</div>
+			<div class="col topData contrastPanel border border-white">
+				<span class="header">Total Energy</span>
+				<span class="solarValue horizontal" id="batteryTotalDischarge">?</span>
+				<span class="solarValue horizontal" id="batteryTotalCharge">?</span>
+			</div>
+			<div class="col topData contrastPanel border border-white">
+				<span class="header">Weather</span>
+				<!-- <span class="solarValue horizontal" id="temperature">?</span>
+				<span class="solarValue horizontal" id="humidity">?</span> -->
+			</div>
+		</div>
+
+	</div>
+
+</body>
+
+</html>
