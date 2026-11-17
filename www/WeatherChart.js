@@ -52,8 +52,8 @@ function InitialiseWeatherChart() {
       },
       scales: {
         x: { type: 'time', time: { unit: 'hour', displayFormats: {hour: 'HH'} } },
-        y: { max : 40.0, min : -10.0 },
-        y1: { max : 100, min : 0 }
+        y: { max : 40.0, min : -10.0, ticks: { color: '#F00', beginAtZero:'#F00' }  },
+        y1: { max : 100, min : 0, ticks: { color: '#00F', beginAtZero:'#00F' }  }
       }
     }
   });
